@@ -54,16 +54,32 @@ class WordReplacer {
 
 	}
 	private function load_dependencies() {
+		require_once \plugin_dir_path( \dirname( __FILE__ ) ) . 'includes/class-loader.php';
+		require_once \plugin_dir_path( \dirname( __FILE__ ) ) . 'includes/class-i18n.php';
+		require_once \plugin_dir_path( \dirname( __FILE__ ) ) . 'admin/class-admin.php';
 
+		$this->loader = new Loader( $this->get_plugin_name(), $this->get_version() );
+
+	}
+	public function get_plugin_name() {
+		return $this->plugin_name;
+	}
+	public function get_version() {
+		return $this->version;
 	}
 	private function set_locale() {
+		$i18N = new I18n();
+		$i18N->set_domain( $this->get_plugin_name() );
 
+		$this->loader->add_action( 'plugins_loaded', $i18N, 'load_plugin_textdomain' );
 	}
 	private function define_admin_hooks() {
+		$admin = new \JGibson\WordRepalcer\Admin\Admin( $this->get_plugin_name(), $this->get_version() );
 
+		// add actions
 	}
 	public function run() {
-
+		$this->loader->run();
 	}
 
 }

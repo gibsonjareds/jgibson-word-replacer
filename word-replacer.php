@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 function wp_run_word_replacer_plugin() {
 	require_once \plugin_file_path( __FILE__ ) . 'includes/class-word-replacer.php';
-	$plugin = new WordReplacer();
+	$plugin = new Includes\WordReplacer();
 
 	$plugin->run();
 }

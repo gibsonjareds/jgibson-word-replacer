@@ -18,7 +18,7 @@ namespace JGibson\WordReplacer\Includes;
   @package    word-replacer
   @subpackage word-replacer/includes
  */
-class Il18n {
+class I18n {
 
 	/**
 	  Store the text domain.
@@ -29,10 +29,10 @@ class Il18n {
 	protected $domain;
 
 	public function load_plugin_textdomain() {
-
+		\load_plugin_textdomain( $this->domain, false, \dirname( \dirname( plugin_basename( __FILE__ ) ) ) . '/languages/' );
 	}
 
 	public function set_domain( $domain ) {
-
+		$this->domain = $domain;
 	}
 }
