@@ -27,7 +27,15 @@ namespace JGibson\WordReplacer;
  */
 
 
-if ( !defined( 'WPINC' ) ) {
-    die;
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
 
+function wp_run_word_replacer_plugin() {
+	require_once \plugin_file_path( __FILE__ ) . 'includes/class-word-replacer.php';
+	$plugin = new WordReplacer();
+
+	$plugin->run();
+}
+
+wp_run_word_replacer_plugin();

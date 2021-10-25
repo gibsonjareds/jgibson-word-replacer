@@ -18,29 +18,29 @@ namespace JGibson\WordReplacer\Includes;
  */
 class Loader {
 
-    /**
-      Array of actions loaded by the plugin.
+	/**
+	  Array of actions loaded by the plugin.
 
-      @since 0.1.0
-      @var   array $actions The array of actions.
-     */
-    protected $actions;
+	  @since 0.1.0
+	  @var   array $actions The array of actions.
+	 */
+	protected $actions;
 
-    /**
-      Array of filters loaded by the plugin.
+	/**
+	  Array of filters loaded by the plugin.
 
-      @since 0.1.0
-      @var   array $filters The array of filters.
-     */
-    protected $filters;
+	  @since 0.1.0
+	  @var   array $filters The array of filters.
+	 */
+	protected $filters;
 
-    /**
-      Set up the arrays for loading in actions or filters.
+	/**
+	  Set up the arrays for loading in actions or filters.
 
-      @since 0.1.0
-     */
-    public function __construct(){
-        $this->actions = array();
-        $this->filters = array();
-    }
+	  @since 0.1.0
+	 */
+	public function __construct() {
+		$this->actions = array();
+		$this->filters = array();
+	}
 }

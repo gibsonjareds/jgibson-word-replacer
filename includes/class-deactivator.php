@@ -3,7 +3,7 @@ namespace JGibson\WordReplacer\Includes;
 
 class Deactivator {
 
-    public static function deactivate(){
-        
-    }
+	public static function deactivate() {
+
+	}
 }
