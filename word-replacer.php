@@ -31,6 +31,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+function wp_activate_word_replacer_plugin() {
+	require_once \plugin_file_path( __FILE__ ) . 'includes/class-activator';
+	Includes\Activator::activate();
+}
+
 function wp_run_word_replacer_plugin() {
 	require_once \plugin_file_path( __FILE__ ) . 'includes/class-word-replacer.php';
 	$plugin = new Includes\WordReplacer();

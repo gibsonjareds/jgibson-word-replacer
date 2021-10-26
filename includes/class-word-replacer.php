@@ -10,7 +10,7 @@ namespace JGibson\WordReplacer\Includes;
   @package    word-replacer
   @subpackage word-replacer/includes
  */
-
+require_once \plugin_file_path( __FILE__ ) . 'includes/traits/trait-uses-plugin-meta.php';
 /**
   This is the core plugin class. It handles including all the code as well as setting up hooks.
 
@@ -19,15 +19,7 @@ namespace JGibson\WordReplacer\Includes;
   @subpackage word-replacer/includes
  */
 class WordReplacer {
-
-	/**
-	  The current plugin version.
-
-	  @since 0.1.0
-	  @var   string  $version The version of the plugin.
-	 */
-	protected $version;
-
+	use Traits\UsesPluginMeta;
 	/**
 	  The identifier for the plugin
 
@@ -60,12 +52,6 @@ class WordReplacer {
 
 		$this->loader = new Loader( $this->get_plugin_name(), $this->get_version() );
 
-	}
-	public function get_plugin_name() {
-		return $this->plugin_name;
-	}
-	public function get_version() {
-		return $this->version;
 	}
 	private function set_locale() {
 		$i18N = new I18n();
