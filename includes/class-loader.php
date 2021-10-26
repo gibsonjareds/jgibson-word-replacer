@@ -5,16 +5,16 @@ namespace JGibson\WordReplacer\Includes;
   Loads all the actions and filters.
 
   @since      0.1.0
-  @package    word-replacer
-  @subpackage word-replacer/includes
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/includes
  */
 
 /**
   Loads all the actions and filters.
 
   @since      0.1.0
-  @package    word-replacer
-  @subpackage word-replacer/includes
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/includes
  */
 class Loader {
 
@@ -45,7 +45,7 @@ class Loader {
 	}
 
 	public function add_action( $hook, $object, $callback, $priority = 10, $num_args = 1 ) {
-		$this->add(
+		$this->actions = $this->add(
 			$this->actions,
 			array(
 				'hook'     => $hook,
@@ -58,9 +58,10 @@ class Loader {
 	}
 	private function add( $which, $args ) {
 		$which[] = $args;
+		return $which;
 	}
 	public function add_filter( $hook, $object, $callback, $priority = 10, $num_args = 1 ) {
-		$this->add(
+		$this->filters = $this->add(
 			$this->filters,
 			array(
 				'hook'     => $hook,

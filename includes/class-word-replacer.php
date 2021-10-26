@@ -7,16 +7,16 @@ namespace JGibson\WordReplacer\Includes;
   This class will handle running the plugin.
  *
   @since      0.1.0
-  @package    word-replacer
-  @subpackage word-replacer/includes
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/includes
  */
-require_once \plugin_file_path( __FILE__ ) . 'includes/traits/trait-uses-plugin-meta.php';
+require_once \plugin_dir_path( __FILE__ ) . 'traits/trait-uses-plugin-meta.php';
 /**
   This is the core plugin class. It handles including all the code as well as setting up hooks.
 
   @since      0.1.0
-  @package    word-replacer
-  @subpackage word-replacer/includes
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/includes
  */
 class WordReplacer {
 	use Traits\UsesPluginMeta;
@@ -60,9 +60,16 @@ class WordReplacer {
 		$this->loader->add_action( 'plugins_loaded', $i18N, 'load_plugin_textdomain' );
 	}
 	private function define_admin_hooks() {
-		$admin = new \JGibson\WordRepalcer\Admin\Admin( $this->get_plugin_name(), $this->get_version() );
+		$admin = new \JGibson\WordReplacer\Admin\Admin( $this->get_plugin_name(), $this->get_version() );
 
-		// add actions
+		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'admin_init', $admin, 'options_update' );
+		$this->loader->add_action( 'admin_menu', $admin, 'add_menu' );
+
+		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
+		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $admin, 'add_action_links' );
+
 	}
 	public function run() {
 		$this->loader->run();

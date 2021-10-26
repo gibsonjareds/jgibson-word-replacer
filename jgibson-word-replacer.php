@@ -11,7 +11,7 @@ namespace JGibson\WordReplacer;
  *
  * @link              https://github.com/gibsonjareds
  * @since             0.1.0
- * @package           word-replacer
+ * @package           jg-word-replacer
  *
  * @wordpress-plugin
  * Plugin Name:       Word Replacer
@@ -32,12 +32,14 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 function wp_activate_word_replacer_plugin() {
-	require_once \plugin_file_path( __FILE__ ) . 'includes/class-activator';
-	Includes\Activator::activate();
+	require_once \plugin_dir_path( __FILE__ ) . 'includes/class-activator';
+	$activator = new Includes\Activator();
+	$activator->activate();
 }
+\register_activation_hook( __FILE__, 'wp_activate_word_replacer_plugin' );
 
 function wp_run_word_replacer_plugin() {
-	require_once \plugin_file_path( __FILE__ ) . 'includes/class-word-replacer.php';
+	require_once \plugin_dir_path( __FILE__ ) . 'includes/class-word-replacer.php';
 	$plugin = new Includes\WordReplacer();
 
 	$plugin->run();

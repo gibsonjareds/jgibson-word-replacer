@@ -6,8 +6,8 @@ namespace JGibson\WordReplacer\Admin\Partials;
 
   @since 0.1.0
 
-  @package    word-replacer
-  @subpackage word-replacer/admin/partials
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/admin/partials
  */
 ?>
 <div class="wrap">

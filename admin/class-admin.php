@@ -5,16 +5,16 @@ namespace JGibson\WordReplacer\Admin;
   Defines core of admin menu functionality
 
   @since      0.1.0
-  @package    word-replacer
-  @subpackage word-replacer/admin
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/admin
  */
 
 /**
   Class that handles hooking up the admin menu functionality
 
   @since      0.1.0
-  @package    word-replacer
-  @subpackage word-replacer/admin
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/admin
  */
 class Admin {
 
@@ -69,17 +69,24 @@ class Admin {
 
 		return $words;
 	}
+
+	public function add_action_links( $links ) {
+		$settings_link = array(
+			'<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_name ) . '">' . __( 'Settings', $this->plugin_name ) . '</a>',
+		);
+		return array_merge( $settings_link, $links );
+	}
 	public function add_menu() {
 		\add_options_page( 'Word Replacer Setup', 'Word Replacer', 'manage_options', $this->plugin_name, array( $this, 'setup_page' ) );
 	}
 	public function setup_page() {
 		include_once 'partials/admin-display.php';
 	}
-	public function enqueue_admin_scripts() {
+	public function enqueue_scripts() {
 		if ( 'settings_page_' . $this->plugin_name == get_current_screen()->id ) {
 			\wp_register_script( 'jg_wr_vue', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js' );
 			\wp_enqueue_script( 'jg_wr_vue' );
-			\wp_register_script( 'jg_wr_admin', \plugin_dir_url( __FILE__ ) . 'admin/js/admin.js', 'jg_wr_vue' );
+			\wp_register_script( 'jg_wr_admin', \plugin_dir_url( __FILE__ ) . 'js/admin.js', 'jg_wr_vue' );
 			\wp_enqueue_script( 'jg_wr_admin' );
 		}
 	}

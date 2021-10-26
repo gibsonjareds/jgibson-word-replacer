@@ -7,16 +7,16 @@ namespace JGibson\WordReplacer\Includes;
   The class handles internationalization.
  *
   @since      0.1.0
-  @package    word-replacer
-  @subpackage word-replacer/includes
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/includes
  */
 
 /**
   The class for handling internationalization.
 
   @since      0.1.0
-  @package    word-replacer
-  @subpackage word-replacer/includes
+  @package    jg-word-replacer
+  @subpackage jg-word-replacer/includes
  */
 class I18n {
 
