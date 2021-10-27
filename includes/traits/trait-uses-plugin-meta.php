@@ -8,7 +8,7 @@ trait UsesPluginMeta {
 	  @since 0.1.0
 	  @var   string  $version The version of the plugin.
 		*/
-	protected $version;
+	protected $version = '0.1.0';
 
 	/**
 	  The identifier for the plugin
@@ -16,7 +16,7 @@ trait UsesPluginMeta {
 	  @since 0.1.0
 	  @var   string  $plugin_name The unique identifier.
 	 */
-	protected $plugin_name;
+	protected $plugin_name = 'jg-word-replacer';
 	public function get_plugin_name() {
 		return $this->plugin_name;
 	}

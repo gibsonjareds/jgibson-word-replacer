@@ -9,6 +9,8 @@ namespace JGibson\WordReplacer\Admin;
   @subpackage jg-word-replacer/admin
  */
 
+require_once \dirname( \plugin_dir_path( __FILE__ ) ) . '/includes/traits/trait-uses-plugin-meta.php';
+
 /**
   Class that handles hooking up the admin menu functionality
 
@@ -18,23 +20,8 @@ namespace JGibson\WordReplacer\Admin;
  */
 class Admin {
 
-	/**
-	  Current plugin version
-
-	  @since 0.1.0
-	  @param string $version The plugin version
-	 */
-	protected $version;
-
-	/**
-	  The unique name of the plugin
-
-	  @since 0.1.0
-	  @param string $plugin_name The name of the plugin
-	 */
-	protected $plugin_name;
-
-
+    use \JGibson\WordReplacer\Includes\Traits\UsesPluginMeta;
+	
 	/**
 	  The options stored for the plugin
 
@@ -43,10 +30,8 @@ class Admin {
 	 */
 	protected $options;
 
-	public function __construct( $plugin_name, $version ) {
-		$this->version     = $version;
-		$this->plugin_name = $plugin_name;
-		$this->options     = \get_option( $this->plugin_name );
+	public function __construct() {
+   		$this->options     = \get_option( $this->plugin_name );
 	}
 
 
