@@ -1,0 +1,25 @@
+.jg-word-list{
+    max-width: 500px;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    margin:0;
+}
+.jg-word-item{
+    display:flex;
+    justify-content: space-around;
+    padding: 5px 10px;
+}
+.jg-word-item:nth-of-type(odd){
+    background-color: lightgray;
+}
+.jg-word-item.header{
+    background-color: transparent;
+    border-bottom: 1px solid darkgray;
+}
+
+.jg-word-item span{
+    flex: 1;
+}
+.jg-word-item.header span{
+    font-size: 16px;
+}

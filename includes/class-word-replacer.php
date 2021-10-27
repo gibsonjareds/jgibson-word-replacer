@@ -63,8 +63,9 @@ class WordReplacer {
 		$admin = new \JGibson\WordReplacer\Admin\Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_styles' );
 
-		$this->loader->add_action( 'admin_init', $admin, 'options_update' );
+		$this->loader->add_action( 'admin_init', $admin, 'update_options' );
 		$this->loader->add_action( 'admin_menu', $admin, 'add_menu' );
 
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );

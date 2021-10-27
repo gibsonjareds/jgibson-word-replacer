@@ -63,7 +63,7 @@ class Admin {
 
 		foreach ( $maybe_words as $key => $value ) {
 			if ( ! is_numeric( $key ) && ! empty( $key ) ) {
-				$words[ $key ] = (string) $value;
+				$words[ sanitize_text_field( $key ) ] = sanitize_text_field( $value );
 			}
 		}
 
@@ -76,17 +76,26 @@ class Admin {
 		);
 		return array_merge( $settings_link, $links );
 	}
+	public function update_options() {
+		register_setting( $this->plugin_name, $this->plugin_name, array( $this, 'validate_options' ) );
+	}
 	public function add_menu() {
 		\add_options_page( 'Word Replacer Setup', 'Word Replacer', 'manage_options', $this->plugin_name, array( $this, 'setup_page' ) );
 	}
 	public function setup_page() {
 		include_once 'partials/admin-display.php';
 	}
+	public function enqueue_styles() {
+		if ( 'settings_page_' . $this->plugin_name == get_current_screen()->id ) {
+			\wp_enqueue_style( 'wp-admin' );
+			\wp_enqueue_style( 'jr_wr_admin', \plugin_dir_url( __FILE__ ) . 'css/admin.css' );
+		}
+	}
 	public function enqueue_scripts() {
 		if ( 'settings_page_' . $this->plugin_name == get_current_screen()->id ) {
 			\wp_register_script( 'jg_wr_vue', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js' );
 			\wp_enqueue_script( 'jg_wr_vue' );
-			\wp_register_script( 'jg_wr_admin', \plugin_dir_url( __FILE__ ) . 'js/admin.js', 'jg_wr_vue' );
+			\wp_register_script( 'jg_wr_admin', \plugin_dir_url( __FILE__ ) . 'js/admin.js', 'jg_wr_vue', true );
 			\wp_enqueue_script( 'jg_wr_admin' );
 		}
 	}
